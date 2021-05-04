@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+}
+
+body {
+    background-color: #e4e4e2;
+}
+
+.green-bar {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    background-color: #8cc9c2;
+    height: 15vh;
+    width: 100%;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.box  {
+    padding: 10px;
+}
+
+.wrapper {
+    max-width: 1024px;
+    margin: 5vh auto;
+    /* position: absolute;
+    top: 10%; */
+}
+
+main {
+    max-width: 1200px;
+    height: 80vh;
+    background-color: rgb(233, 230, 230);
+}
+
+main,
+main * {
+    display: flex;
+}
+
+
+.col-left {
+    width: 30%;
+}
+
+.col-right {
+    width: 70%;
+    border-left: 1px solid lightgrey;
+}
+
+.msg-area {
+    background-image: url(imgs/mine.jpg);
+}
+
+.icon-container,
+.icon-container>img {
+    border-radius: 50%;
+}
+
+.icon-container {
+    max-width: 50px;
+    overflow: hidden;
+}
+
+.big {
+    max-width: 60px;
+}
+
+.icon-container > img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.bell-container {
+    height: 50px;
+    width: 50px;
+}
+
+.notification-box > *,
+.activeUserChat,
+.chat{
+    justify-content: center;
+}
+
+.notification-options,
+.chat {
+    font-size: 0.8em;
+    padding:    5px;
+}
+
+.notification-box {
+    background-color: #cce6f3;
+}
+
+.notification-box i {
+    color: #cce6f3;
+}
+
+i {
+    color: rgb(197, 196, 196);
+    align-self: center;
+    font-size: 1.2em;
+    padding: 0 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    border-radius: 20px;
+    line-height: 2em;
+    border: none;
+    padding: 0 15px;
+}
+
+.col-right input[type="text"] {
+    line-height: 3em; 
+    margin: 5px;  
+}   
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+.conversation-list,
+.bell-container {
+    background-color: white;
+}
+
+.message {
+    width: 100%;
+}
+
+.message > p {
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid black
+}
+
+.sent {
+    background-color: lime;
+}

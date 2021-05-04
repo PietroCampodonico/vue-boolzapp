@@ -6,13 +6,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
     <title>Boolzapp</title>
 </head>
 <body>
-    
+    <div class="green-bar"></div>
+    <div class="wrapper" id="app">
+        <main>
+
+            <!-- LEFT COL -->
+            <div class="col-left flex-col">
+
+                <!-- USER BOX -->
+                <div class="user box">
+                    <div class="icon-container">
+                        <img src="imgs/avatar_io.jpg">
+                    </div>
+
+                    <div class="flex-grow"></div>
+
+                    <i class="fas fa-circle-notch"></i>
+                    <i class="fas fa-comment-alt"></i>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+
+
+                <!-- DIV CON CAMPANELLA NOTIIFICHE -->
+                <div class="notification-box box">
+                    <div class="icon-container bell-container">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+                
+                    <div class="flex-col notification-options">
+                        <p class="font-bold">Ricevi notifiche di nuovi messaggi</p>
+                        <a href="#" @click.prevent>Attiva notifiche desktop</a>
+                    </div>
+                </div>
+
+                <!-- SEARCHBAR -->
+                <div class="search-bar box">
+                    <input type="text" placeholder="&#f002 Cerca o inizia una nuova chat">
+                </div>
+
+
+            <!-- LISTA CHAT -->
+                <ul class="conversation-list flex-col flex-grow">
+
+                    <li v-for="users in usersList" @click="onUserClick(users)">
+
+                        <div class="box">
+                            <div class="icon-container big">
+                                <img :src="users.avatar">
+
+                            </div>
+                        
+                            
+                            <div class="flex-col chat">
+                                <p class="font-bold">{{users.name}}</p>
+                                <p><small>Non ci sono messaggi!</small></p>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+
+
+            </div>
+
+            <div class="col-right flex-col">
+                <div class="user box">
+                    <div class="icon-container">
+                        <img :src="activeUser.avatar">
+                    </div>
+                
+                    <div class="flex-grow flex-col activeUserChat">
+                        <p class="font-bold">{{activeUser.name}}</p>
+                        <p><small>dadasd</small></p>
+                    </div>
+                
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-paperclip"></i>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+
+                <div class="msg-area flex-grow">
+
+                    <div class="chat-log flex-col message">
+
+                        <div class="message" v-for="messages in activeUser.messages">
+                            <p class="sent">{{messages.text}}</p>
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="search-bar box">
+                    <i class="fas fa-smile"></i>
+                    <input type="text" placeholder="Scrivi un messaggio">
+                    <i class="fas fa-microphone"></i>
+                </div>
+
+            </div>
+        </main>
+    </div>
 
     <script src="scripts/data.js"></script>
     <script src="scripts/app.js"></script>
