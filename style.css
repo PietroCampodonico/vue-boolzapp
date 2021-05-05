@@ -1,3 +1,5 @@
+/* GENERAL STYLES */
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -10,14 +12,7 @@ body {
     background-color: #e4e4e2;
 }
 
-.green-bar {
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    background-color: #8cc9c2;
-    height: 15vh;
-    width: 100%;
-}
+/* UTILITY CLASSES */
 
 .flex-grow {
     flex-grow: 1;
@@ -38,8 +33,30 @@ body {
 .wrapper {
     max-width: 1024px;
     margin: 5vh auto;
-    /* position: absolute;
-    top: 10%; */
+}
+
+.bgLightGray {
+    background-color: lightgrey;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.rowReverse {
+    flex-direction: row-reverse;
+}
+
+
+/* MAIN */
+
+.green-bar {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    background-color: #8cc9c2;
+    height: 15vh;
+    width: 100%;
 }
 
 main {
@@ -74,10 +91,9 @@ main * {
 
 .icon-container {
     max-width: 50px;
-    overflow: hidden;
 }
 
-.big {
+.icon-container.big {
     max-width: 60px;
 }
 
@@ -100,7 +116,7 @@ main * {
 .notification-options,
 .chat {
     font-size: 0.8em;
-    padding:    5px;
+    padding: 5px;
 }
 
 .notification-box {
@@ -115,19 +131,20 @@ i {
     color: rgb(197, 196, 196);
     align-self: center;
     font-size: 1.2em;
-    padding: 0 5px;
+    padding: 0 10px;
 }
+
 
 input[type="text"] {
     width: 100%;
     border-radius: 20px;
     line-height: 2em;
     border: none;
-    padding: 0 15px;
 }
 
 .col-right input[type="text"] {
     line-height: 3em; 
+    padding: 0 15px;
     margin: 5px;  
 }   
 
@@ -135,22 +152,68 @@ input[type="text"]:focus {
     outline: none;
 }
 
+.search-bar > .fa-search {
+    position: absolute;
+}
+
+.search-bar > input {
+    padding-left: 35px;
+}
+
 .conversation-list,
 .bell-container {
+    overflow: auto;
     background-color: white;
 }
 
-.message {
-    width: 100%;
+li {
+    border-bottom: 1px solid lightgrey;
 }
 
-.message > p {
-    margin: 10px;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid black
+li:hover {
+    background-color: rgb(226, 224, 224);
 }
+
+/* MESSAGES STYLES */
+.message-row {
+    position: relative;
+}
+
+.message-row > p {
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px;
+}
+
 
 .sent {
-    background-color: lime;
+    background-color: rgb(171, 241, 171);
 }
+
+.received {
+    background-color: white;
+}
+
+.triangle {
+    position: absolute;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 37.5px 0 37.5px;
+    border-color: white transparent transparent transparent;
+}
+
+.triangleGreen {
+    border-color: rgb(171, 241, 171) transparent transparent transparent;
+}
+
+.message-row .time {
+    padding-top: 10px;
+    position: absolute;
+    top: 40px;
+    right: 15px
+    
+}
+
