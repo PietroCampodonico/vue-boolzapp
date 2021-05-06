@@ -48,6 +48,15 @@ body {
     flex-direction: row-reverse;
 }
 
+.positionRel {
+    position: relative;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+
 /* MAIN */
 
 .green-bar {
@@ -77,10 +86,6 @@ main * {
 .col-right {
     width: 70%;
     border-left: 1px solid lightgrey;
-}
-
-.msg-area {
-    background-image: url(imgs/mine.jpg);
 }
 
 .icon-container,
@@ -133,6 +138,10 @@ i {
     padding: 0 10px;
 }
 
+i:hover {
+    color: grey;
+    transform: scale(1.1);
+}
 
 input[type="text"] {
     width: 100%;
@@ -151,21 +160,27 @@ input[type="text"]:focus {
     outline: none;
 }
 
-.search-bar > .fa-search {
+.search-bar > .fa-search,
+.search-bar > .fa-times {
     position: absolute;
 }
 
+.search-bar > .fa-times {
+    right: 10px;
+}
+
 .search-bar > input {
-    padding-left: 35px;
+    padding: 0 35px;
 }
 
 .conversation-list,
-.bell-container {
+.bell-container,
+.msg-options {
     overflow: auto;
     background-color: white;
 }
 
-li {
+.conversation-list li {
     border-bottom: 1px solid lightgrey;
 }
 
@@ -173,16 +188,17 @@ li:hover {
     background-color: rgb(226, 224, 224);
 }
 
-/* MESSAGES STYLES */
-.message-row {
-    position: relative;
+/* Message Area */
+
+.msg-area {
+    background-image: url(imgs/mine.jpg);
 }
 
-.message-row > p {
+.message-row > .baloon {
     margin: 10px;
-    padding: 15px;
+    padding: 17px;
     border-radius: 5px;
-    box-shadow: 1px 1px;
+    box-shadow: 0 1px;
     }
 
 .sent {
@@ -199,7 +215,7 @@ li:hover {
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 15px 37.5px 0 37.5px;
+    border-width: 45px 20px 0 37.5px;
     border-color: white transparent transparent transparent;
 }
 
@@ -207,11 +223,35 @@ li:hover {
     border-color: rgb(171, 241, 171) transparent transparent transparent;
 }
 
-.message-row .time {
-    padding-top: 5px;
+.message-row .time,
+.baloon > .fa-angle-down,
+.msg-options {
     position: absolute;
-    top: 40px;
-    right: 15px
-    
 }
 
+.message-row .time {
+    padding-top: 20px;
+    right: 5px;
+    font-size: 0.7em;
+}
+
+.baloon > .fa-angle-down {
+    display: none;
+    top: 0;
+    right: -3px;
+}
+
+.baloon:hover > .fa-angle-down {
+    display: inline-block;
+}
+
+.msg-options {
+    border-radius: 5px;
+    padding: 5px 0;
+    box-shadow: 1px 1px ;
+}
+
+.msg-options > li > a{
+    padding: 10px 20px;
+    text-decoration: unset;
+}

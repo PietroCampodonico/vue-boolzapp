@@ -39,6 +39,10 @@ const app = new Vue({
             this.activeUser = clickedUser
         },
 
+        onTimesClick() {
+            return this.chatFilter = ""
+        },
+
         formatTime(stringDate) {
             return moment(stringDate, "DD/MM/YYYY HH:mm:ss").format("HH:mm")
         },
@@ -50,16 +54,28 @@ const app = new Vue({
                 status: 'sent'
             });
 
+            //this.scrollToBottom();
+
             setTimeout(() => {
                 this.activeUser.messages.push({
                     date: moment().format("DD/MM/YYYY HH:mm:ss"),
                     text: "Ok!",
                     status: 'received',
                 })
+
+                //this.scrollToBottom();
             },1000)
 
             return this.userInput = ""
         },
+
+        /*scrollTobottom() {
+
+            this.$nextTick(() => {
+                const HtmlElement = this.$refs.chatContainerToScroll  
+            })
+              
+        },*/
     },  
     
     mounted(){

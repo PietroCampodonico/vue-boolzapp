@@ -100,9 +100,18 @@
                             <div class="triangle " :class="{triangleGreen: messages.status === 'sent'}"></div>
                             
                             <!-- Baloon con orario -->
+                            
                             <div class="baloon positionRel" :class="messages.status">{{messages.text}}
+                                <i class="fas fa-angle-down"></i>
                                 <div class="time">{{formatTime(messages.date)}}</div>
                             </div>
+
+                            <ul class="msg-options flex-col">
+                                <li><a href="#">Message info</a></li>
+                                <li><a href="#">Delete message</a></li>
+                                
+                            </ul>
+
                         </div>
                 </div>
 
@@ -110,7 +119,8 @@
                 <div class="input-bar box">
                     <i class="fas fa-smile"></i>
                     <input type="text" placeholder="Scrivi un messaggio" v-model="userInput" @keyup.enter="newMessage()">
-                    <i class="fas fa-microphone"></i>
+                    <i class="fas fa-microphone" v-if="!userInput"></i>
+                    <i class="fas fa-paper-plane" v-if="userInput" @click="newMessage()"></i>
                 </div>
 
             </div>
