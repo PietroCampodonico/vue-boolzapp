@@ -81,4 +81,39 @@ const globalUsersList = [
             }
         ],
     },
+        
+//DA PATCHARE
+
+/*
+    {
+        name: 'Lorenzo',
+        avatar: 'imgs/avatar_4.jpg',
+        visible: true,
+        messages: [
+        ],
+    },
+
+    {
+        name: 'Massimo',
+        avatar: 'imgs/avatar_5.jpg',
+        visible: true,
+        messages: [
+        ],
+    },
+
+    {
+        name: 'Andrea',
+        avatar: 'imgs/avatar_7.jpg',
+        visible: true,
+        messages: [
+        ],
+    },
+
+    {
+        name: 'Fausto',
+        avatar: 'imgs/avatar_8.jpg',
+        visible: true,
+        messages: [
+            ],
+    },*/
 ];

@@ -4,6 +4,7 @@ const app = new Vue({
         usersList: globalUsersList,
         activeUser: "", 
         userInput: "",
+        chatFilter: "",
     },
 
     computed: {
@@ -18,7 +19,19 @@ const app = new Vue({
             const lastMsgDate = receivedMsg[receivedMsg.length - 1].date;
 
             return this.formatTime(lastMsgDate);
-        }
+        },
+
+        searchUser() {
+            this.usersList.filter((user) => {
+                let searchedChat = this.chatFilter.toLowerCase();
+                let friendName = user.name.toLowerCase();
+                if (friendName.includes(searchedChat)) {
+                    user.visible = true;
+                } else {
+                    user.visible = false;
+                }
+            })
+        },
     },
 
     methods: {
@@ -41,17 +54,16 @@ const app = new Vue({
                 this.activeUser.messages.push({
                     date: moment().format("DD/MM/YYYY HH:mm:ss"),
                     text: "Ok!",
-                    status: 'received'
+                    status: 'received',
                 })
             },1000)
 
             return this.userInput = ""
-        }
-
+        },
     },  
     
-  mounted(){
+    mounted(){
         moment().format("DD/MM/YYYY HH:mm:ss");
-  }
+    }
 
 })

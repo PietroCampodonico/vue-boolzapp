@@ -16,7 +16,6 @@
     <div class="green-bar"></div>
     <div class="wrapper" id="app">
         <main>
-
             <!-- LEFT COL -->
             <div class="col-left flex-col">
 
@@ -26,7 +25,7 @@
                         <img src="imgs/avatar_io.jpg">
                     </div>
 
-                    <div class="flex-grow"></div>
+                    <div class="flex-grow-autoFlow"></div>
 
                     <i class="fas fa-circle-notch"></i>
                     <i class="fas fa-comment-alt"></i>
@@ -47,43 +46,46 @@
                 </div>
 
                 <!-- SEARCHBAR -->
-                <div class="search-bar box">
+                <div class="search-bar positionRel box">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Cerca o inizia una nuova chat">
+                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="chatFilter" @input="searchUser">
+                    <i class="fas fa-times" v-if="chatFilter" @click="onTimesClick()"></i>
                 </div>
 
 
-            <!-- LISTA CHAT -->
-                <ul class="conversation-list flex-col flex-grow auto-flow">
+             <!-- LISTA CHAT -->
+                <ul class="conversation-list flex-col flex-grow-autoFlow auto-flow">
 
-                    <li v-for="(users,index) in usersList" :key="index" :class="{bgLightGray: activeUser.avatar === users.avatar}" @click="onUserClick(users)">
+                    <li v-for="(user,index) in usersList" :key="index" :class="{bgLightGray: activeUser.avatar === user.avatar}" @click="onUserClick(user)" v-if="user.visible">
 
                         <div class="box">
                             <div class="icon-container big">
-                                <img :src="users.avatar">
+                                <img :src="user.avatar">
 
                             </div>
                         
                             <div class="flex-col chat">
-                                <p class="font-bold">{{users.name}}</p>
+                                <p class="font-bold">{{user.name}}</p>
                                 <p><small>Non ci sono messaggi!</small></p>
                             </div>
                         </div>
                     </li>
                 </ul>
-
-
             </div>
 
+
+            <!-- RIGHT COL -->
             <div class="col-right flex-col">
+
+                <!-- Barra utente selezionato -->
                 <div class="user box">
                     <div class="icon-container">
                         <img :src="activeUser.avatar">
                     </div>
                 
-                    <div class="flex-grow flex-col activeUserChat box">
+                    <div class="flex-grow-autoFlow flex-col activeUserChat box">
                         <p class="font-bold">{{activeUser.name}}</p>
-                        <p><small>Ultimo accesso alle {{activeUserLastAccess}}</small></p>
+                        <p v-if="activeUserLastAccess"><small>Ultimo accesso alle {{activeUserLastAccess}}</small></p>
                     </div>
                 
                     <i class="fas fa-search"></i>
@@ -91,19 +93,21 @@
                     <i class="fas fa-ellipsis-v"></i>
                 </div>
 
-                <div class="msg-area flex-grow">
+                <!-- Barra chat selezionata -->
+                <div class="msg-area flex-grow-autoFlow flex-col">
 
-                    <div class="chat-log flex-col width-100">
-
-                        <div class="message-row flex-col" v-for="(messages, index) in activeUser.messages" :key="index" :class="{rowReverse: messages.status === 'sent'}">
+                        <div class="message-row positionRel" v-for="(messages, index) in activeUser.messages" :key="index" :class="{rowReverse: messages.status === 'sent', flexRow: messages.status === 'received'}">
                             <div class="triangle " :class="{triangleGreen: messages.status === 'sent'}"></div>
-                            <p :class="messages.status">{{messages.text}}</p>
-                            <div class="time">{{formatTime(messages.date)}}</div>
+                            
+                            <!-- Baloon con orario -->
+                            <div class="baloon positionRel" :class="messages.status">{{messages.text}}
+                                <div class="time">{{formatTime(messages.date)}}</div>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
-                <div class="search-bar box">
+                <!-- Barra inserimento messaggi -->
+                <div class="input-bar box">
                     <i class="fas fa-smile"></i>
                     <input type="text" placeholder="Scrivi un messaggio" v-model="userInput" @keyup.enter="newMessage()">
                     <i class="fas fa-microphone"></i>
