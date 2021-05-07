@@ -25,13 +25,13 @@ const app = new Vue({
         },
 
         searchUser() {
-            this.usersList.filter((user) => {
+            return this.usersList.filter((user) => {
                 let searchedChat = this.chatFilter.toLowerCase();
                 let friendName = user.name.toLowerCase();
                 if (friendName.includes(searchedChat)) {
-                    user.visible = true;
+                    return true;
                 } else {
-                    user.visible = false;
+                    return false;
                 }
             })
         },
@@ -87,13 +87,33 @@ const app = new Vue({
         },
 
         changePopUpVisibility(message) {
-            this.$set(message, "showPopUp", false);
+            if (!message.showPopUp) {
+                this.$set(message, "showPopUp", true);
+            } else {
+                this.$set(message, "showPopUp", false)
+            }
+        },
+
+        getLastChatMessage(messages) {
+            if (messages.length === 0) {
+                return "Non ci sono messaggi!"
+            }
+
+            let lastMsg = messages[messages.length - 1];
+            const lastMsgDate = this.formatTime(lastMsg.date);
+
+            let trimmedMsg = lastMsg.text.slice(0, 15);
+
+            if (lastMsg.text.length > 15) {
+                trimmedMsg += "...";
+            } 
+
+            return trimmedMsg + " - " + lastMsgDate
         }
     },  
     
     mounted(){
 
-        //this.activeUser = this.usersList[0];
 
         moment().format("DD/MM/YYYY HH:mm:ss");
 

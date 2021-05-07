@@ -48,7 +48,7 @@
                 <!-- SEARCHBAR -->
                 <div class="search-bar positionRel box">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="chatFilter" @input="searchUser">
+                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="chatFilter" >
                     <i class="fas fa-times" v-if="chatFilter" @click="onTimesClick()"></i>
                 </div>
 
@@ -56,7 +56,7 @@
              <!-- LISTA CHAT -->
                 <ul class="conversation-list flex-col flex-grow-autoFlow auto-flow">
 
-                    <li v-for="(user,index) in usersList" :key="index" :class="{bgLightGray: activeUser.avatar === user.avatar}" @click="onUserClick(user)" v-if="user.visible">
+                    <li v-for="(user,index) in searchUser" :key="index" :class="{bgLightGray: activeUser.avatar === user.avatar}" @click="onUserClick(user)">
 
                         <div class="box">
                             <div class="icon-container big">
@@ -66,7 +66,7 @@
                         
                             <div class="flex-col chat">
                                 <p class="font-bold">{{user.name}}</p>
-                                <p><small>Non ci sono messaggi!</small></p>
+                                <p><small>{{getLastChatMessage(user.messages)}}</small></p>
                             </div>
                         </div>
                     </li>
