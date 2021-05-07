@@ -52,10 +52,6 @@ body {
     position: relative;
 }
 
-.width-100 {
-    width: 100%;
-}
-
 
 /* MAIN */
 
@@ -141,6 +137,7 @@ i {
 i:hover {
     color: grey;
     transform: scale(1.1);
+    cursor: pointer;
 }
 
 input[type="text"] {
@@ -249,9 +246,13 @@ li:hover {
     border-radius: 5px;
     padding: 5px 0;
     box-shadow: 1px 1px ;
+    z-index: 1;
+    bottom: -50px;
+    /* display: none; */
 }
 
 .msg-options > li > a{
     padding: 10px 20px;
     text-decoration: unset;
 }
+

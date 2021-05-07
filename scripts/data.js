@@ -2,12 +2,12 @@ const globalUsersList = [
     {
         name: 'Michele',
         avatar: 'imgs/avatar_1.jpg',
-        visible: true,
         messages: [
             {
                 date: '13/08/2020 15:30:55',
                 text: 'Hai portato a spasso il cane?',
                 status: 'sent'
+                
             },
             {
                 date: '10/01/2020 15:50:00',
@@ -24,7 +24,6 @@ const globalUsersList = [
     {
         name: 'Fabio',
         avatar: 'imgs/avatar_2.jpg',
-        visible: true,
         messages: [
             {
                 date: '20/03/2020 16:30:00',
@@ -45,7 +44,6 @@ const globalUsersList = [
     }, {
         name: 'Samuele',
         avatar: 'imgs/avatar_3.jpg',
-        visible: true,
         messages: [
             {
                 date: '28/03/2020 10:10:40',
@@ -67,7 +65,6 @@ const globalUsersList = [
     {
         name: 'Luisa',
         avatar: 'imgs/avatar_6.jpg',
-        visible: true,
         messages: [
             {
                 date: '10/01/2020 15:30:55',
@@ -84,36 +81,28 @@ const globalUsersList = [
         
 //DA PATCHARE
 
-/*
+
     {
         name: 'Lorenzo',
         avatar: 'imgs/avatar_4.jpg',
-        visible: true,
-        messages: [
-        ],
+        messages: [],
     },
 
     {
         name: 'Massimo',
         avatar: 'imgs/avatar_5.jpg',
-        visible: true,
-        messages: [
-        ],
+        messages: [],
     },
 
     {
         name: 'Andrea',
         avatar: 'imgs/avatar_7.jpg',
-        visible: true,
-        messages: [
-        ],
+        messages: [],
     },
 
     {
         name: 'Fausto',
         avatar: 'imgs/avatar_8.jpg',
-        visible: true,
-        messages: [
-            ],
-    },*/
-];
+        messages: [],
+    },
+];  

@@ -94,7 +94,7 @@
                 </div>
 
                 <!-- Barra chat selezionata -->
-                <div class="msg-area flex-grow-autoFlow flex-col">
+                <div class="msg-area flex-grow-autoFlow flex-col box" ref="chatContainerToScroll">
 
                         <div class="message-row positionRel" v-for="(messages, index) in activeUser.messages" :key="index" :class="{rowReverse: messages.status === 'sent', flexRow: messages.status === 'received'}">
                             <div class="triangle " :class="{triangleGreen: messages.status === 'sent'}"></div>
@@ -102,13 +102,13 @@
                             <!-- Baloon con orario -->
                             
                             <div class="baloon positionRel" :class="messages.status">{{messages.text}}
-                                <i class="fas fa-angle-down"></i>
+                                <i class="fas fa-angle-down" @click="changePopUpVisibility(messages)"></i>
                                 <div class="time">{{formatTime(messages.date)}}</div>
                             </div>
 
-                            <ul class="msg-options flex-col">
+                            <ul class="msg-options flex-col" v-if="messages.showPopUp">
                                 <li><a href="#">Message info</a></li>
-                                <li><a href="#">Delete message</a></li>
+                                <li><a href="#" @click="deleteMessage(index)">Delete message</a></li>
                                 
                             </ul>
 
@@ -116,11 +116,11 @@
                 </div>
 
                 <!-- Barra inserimento messaggi -->
-                <div class="input-bar box">
+                <div class="input-bar box" v-if="activeUser">
                     <i class="fas fa-smile"></i>
                     <input type="text" placeholder="Scrivi un messaggio" v-model="userInput" @keyup.enter="newMessage()">
                     <i class="fas fa-microphone" v-if="!userInput"></i>
-                    <i class="fas fa-paper-plane" v-if="userInput" @click="newMessage()"></i>
+                    <i class="fas fa-paper-plane" v-if="userInput" @click="newMessage()" :class=""></i>
                 </div>
 
             </div>

@@ -13,8 +13,11 @@ const app = new Vue({
                 return "";
             }
 
-            //ci sarà bug quando eliminerremo i messaggi
             const receivedMsg = this.activeUser.messages.filter((msg) => msg.status === 'received');
+
+            if(receivedMsg.length === 0) {
+                return "";
+            }
 
             const lastMsgDate = receivedMsg[receivedMsg.length - 1].date;
 
@@ -54,7 +57,7 @@ const app = new Vue({
                 status: 'sent'
             });
 
-            //this.scrollToBottom();
+            this.scrollToBottom();
 
             setTimeout(() => {
                 this.activeUser.messages.push({
@@ -63,23 +66,42 @@ const app = new Vue({
                     status: 'received',
                 })
 
-                //this.scrollToBottom();
+                this.scrollToBottom();
             },1000)
 
             return this.userInput = ""
         },
 
-        /*scrollTobottom() {
+        scrollToBottom() {
 
             this.$nextTick(() => {
-                const HtmlElement = this.$refs.chatContainerToScroll  
+                const htmlElement = this.$refs.chatContainerToScroll;
+                
+                htmlElement.scrollTop = htmlElement.scrollHeight;
             })
               
-        },*/
+        },
+
+        deleteMessage(index) {
+            this.activeUser.messages.splice(index, 1)
+        },
+
+        changePopUpVisibility(message) {
+            this.$set(message, "showPopUp", false);
+        }
     },  
     
     mounted(){
+
+        //this.activeUser = this.usersList[0];
+
         moment().format("DD/MM/YYYY HH:mm:ss");
+
+        this.usersList.forEach(user => {
+            user.messages.forEach(message => {
+                this.$set(message, "showPopUp", false);
+            });
+        });
     }
 
 })
